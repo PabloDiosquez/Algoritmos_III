@@ -1,6 +1,20 @@
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Builder
+@Data
+@RequiredArgsConstructor
 public class Libro {
+    private final @NonNull int isbn;
+    private final @NonNull String titulo;
+
+    @Builder.Default
+    private LocalDate fechaPublicacion = LocalDate.of(1900, 1, 1);
+
+    @Builder.Default
+    @ToString.Exclude
+    private List<String> autores = new ArrayList<>();
 }
