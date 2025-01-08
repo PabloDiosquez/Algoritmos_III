@@ -26,4 +26,8 @@ public class Carrera {
     public String getNombre() {
         return nombre;
     }
+
+    public ArrayList<Materia> getMaterias() {
+        return materias;
+    }
 }
