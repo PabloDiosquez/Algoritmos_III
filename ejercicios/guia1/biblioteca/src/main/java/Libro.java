@@ -20,7 +20,16 @@ public class Libro {
 
     private int stock;
 
+    public void setFechaPublicacion(int anio, int mes, int dia){
+        fechaPublicacion = LocalDate.of(anio, mes, dia);
+    }
+    public void agregarAutor(String autor){
+        if(autor != null){
+            autores.add(autor);
+        }
+    }
     public void incrementarStock() {
         setStock(getStock() + 1);
     }
+
 }
