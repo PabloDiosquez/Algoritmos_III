@@ -17,4 +17,10 @@ public class Libro {
     @Builder.Default
     @ToString.Exclude
     private List<String> autores = new ArrayList<>();
+
+    private int stock;
+
+    public void incrementarStock() {
+        setStock(getStock() + 1);
+    }
 }

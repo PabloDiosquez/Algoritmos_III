@@ -1,40 +1,55 @@
-import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+@Builder
 @Getter
 public class Biblioteca {
-    private String nombre;
+    private @NonNull String nombre;
 
-    private List<Libro> libros;
-    private List<Cliente> clientes;
+    @Builder.Default
+    private List<Libro> libros = new ArrayList<>();
 
-    public Biblioteca(String nombre) {
-        this.nombre = nombre;
-        libros = new ArrayList<>();
-        clientes = new ArrayList<>();
-    }
+    @Builder.Default
+    private List<Cliente> clientes = new ArrayList<>();
 
-    public boolean crearLbro(int isbn, String titulo){
-        Libro libro = Libro.builder()
-                .isbn(isbn)
-                .titulo(titulo)
-                .build();
-        libros.add(libro);
-        return true;
-    }
-
-    public String borrarLibro(int isbn){
+    public boolean crearLibro(int isbn, String titulo) {
         Libro libro = buscarLibro(isbn);
-        if(libro == null){
-            return "NOT FOUND";
+        if (libro == null) {
+            libro = Libro.builder()
+                    .isbn(isbn)
+                    .titulo(titulo)
+                    .stock(1)
+                    .build();
+            libros.add(libro);
+            return true;
+        } else {
+            libro.incrementarStock();
+            return false;
+        }
+    }
+
+    public String borrarLibro(int isbn) {
+        Libro libro = buscarLibro(isbn);
+        if (libro == null) {
+            return "Libro no encontrado";
         }
         libros.remove(libro);
-        return libro.getTitulo();
+        return "Libro " + libro.getTitulo() + " eliminado correctamente";
+    }
+
+    // TODO: consultar el stock de libros por título, fecha o autor
+    public int consultarStock(String titulo){
+        for (Libro libro: libros) {
+            if(libro.getTitulo().equals(titulo)){
+                return libro.getStock();
+            }
+        }
+        return 0;
     }
 
     public Libro buscarLibro(int isbn){
@@ -45,4 +60,5 @@ public class Biblioteca {
         }
         return null;
     }
+
 }
