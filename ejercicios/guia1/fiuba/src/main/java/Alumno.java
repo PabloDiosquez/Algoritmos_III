@@ -1,86 +1,32 @@
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
+
 import java.util.ArrayList;
-
+import java.util.List;
+@Builder
+@ToString
 public class Alumno {
-    private int legajo;
-    private String nomYAPell;
-    private ArrayList<Carrera> carreras;
-    private ArrayList<Materia> aprobadas;
+    @Getter
+    private @NonNull int legajo;
 
-    public Alumno(int legajo, String nomYAPell) {
-        this.legajo = legajo;
-        this.nomYAPell = nomYAPell;
-        carreras = new ArrayList<>();
-        aprobadas = new ArrayList<>();
-    }
+    @Getter
+    private @NonNull String nombre;
 
-    public int getLegajo() {
-        return legajo;
-    }
+    @Getter
+    private @NonNull String apellido;
 
-    public void setLegajo(int legajo) {
-        this.legajo = legajo;
-    }
+    @Builder.Default
+    private List<Carrera> carreras = new ArrayList<>();
 
-    public String getNomYAPell() {
-        return nomYAPell;
-    }
-
-    public void setNomYAPell(String nomYAPell) {
-        this.nomYAPell = nomYAPell;
-    }
-
-    public ArrayList<Carrera> getCarreras() {
-        return carreras;
-    }
-
-    public ArrayList<Materia> getAprobadas() {
-        return aprobadas;
-    }
-
-    public void agregarCarrera(Carrera carrera) {
-        this.carreras.add(carrera);
-    }
-
-    public void agregarMateriaAprobada(Materia materia){
-        aprobadas.add(materia);
-    }
-
-    public Carrera buscarCarrera(int codigo){
-        for (Carrera carrera: carreras) {
-            if (carrera.getCodigo() == codigo){
-                return carrera;
-            }
+    public void agregarCarrera(Carrera carrera){
+        if(carrera != null){
+            carreras.add(carrera);
         }
-        return null;
     }
 
-    public Materia buscarMateria(int codCarrera, int codMateria){
-        Carrera carrera = buscarCarrera(codCarrera);
-        if (carrera == null){
-            return null;
-        }
-        for (Materia materia: carrera.getMaterias()) {
-            if(materia.getCodigo() == codMateria){
-                return materia;
-            }
-        }
-        return null;
-    }
-
-    public String consultarEstado() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getNomYAPell());
-        if(getAprobadas().isEmpty()){
-            sb.append("Aún no aprobó ninguna materia.");
-            return sb.toString();
-        }
-        int total = 0;
-        sb.append("\nMaterias aprobadas:\n");
-        for (Materia materia : getAprobadas()) {
-            sb.append(materia.getNombre()).append("\n");
-            total += materia.getCreditos();
-        }
-        sb.append(String.format("Créditos totales: %d", total));
-        return sb.toString();
+    public boolean quitarCarrera(Carrera carrera){
+        return carreras.remove(carrera);
     }
 }
