@@ -65,10 +65,8 @@ public class Biblioteca {
         return buscar(libro -> libro.getTitulo().equals(titulo));
     }
     private Libro buscar(Predicate<Libro> criterio){
-        Iterator<Libro> iter = libros.iterator();
-        while(iter.hasNext()){
-            Libro libro = iter.next();
-            if(criterio.test(libro)){
+        for (Libro libro : libros) {
+            if (criterio.test(libro)) {
                 return libro;
             }
         }
@@ -84,10 +82,8 @@ public class Biblioteca {
     }
 
     private boolean pertenece(Predicate<Libro> criterio){
-        Iterator<Libro> iter = libros.iterator();
-        while(iter.hasNext()){
-            Libro libro = iter.next();
-            if(criterio.test(libro)){
+        for (Libro libro : libros) {
+            if (criterio.test(libro)) {
                 return true;
             }
         }
@@ -96,12 +92,38 @@ public class Biblioteca {
 
     // -------------------- CLIENTES --------------------
 
+    public String agregarCliente(String nombre, String apellido){
+        if(esCliente(nombre, apellido)){
+            return "Ya es cliente!";
+        }
+        Cliente cliente = Cliente.builder()
+                .id(generarId())
+                .nombre(nombre)
+                .apellido(apellido)
+                .build();
+        return String.format("Cliente ID: %s - Nombre Completo: %s", cliente.getId(), cliente.nomYApell());
+    }
 
-    private boolean esCliente(String nombre, String apellido){
-        Iterator<Cliente> iter = clientes.iterator();
-        while(iter.hasNext()){
-            Cliente cliente = iter.next();
+    public String quitarCliente(String nombre, String apellido){
+        if(esCliente(nombre, apellido)){
+            Cliente cliente = buscarCliente(nombre, apellido);
+
+            return String.format("Cliente ID: %s - Nombre completo: %s", cliente.getId(), cliente.nomYApell());
+        }
+        return "No es cliente de nuestra biblioteca";
+    }
+
+    private Cliente buscarCliente(String nombre, String apellido){
+        for (Cliente cliente: clientes) {
             if(cliente.getNombre().equals(nombre) && cliente.getApellido().equals(apellido)){
+                return cliente;
+            }
+        }
+        return null;
+    }
+    private boolean esCliente(String nombre, String apellido){
+        for (Cliente cliente : clientes) {
+            if (cliente.getNombre().equals(nombre) && cliente.getApellido().equals(apellido)) {
                 return true;
             }
         }
@@ -111,6 +133,10 @@ public class Biblioteca {
     // --------------------------------------------------
 
     private int generarISBN(){
+        return new Random().nextInt(1000);
+    }
+
+    private int generarId(){
         return new Random().nextInt(1000);
     }
 
