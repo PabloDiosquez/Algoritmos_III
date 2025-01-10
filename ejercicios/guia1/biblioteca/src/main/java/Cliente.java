@@ -47,15 +47,34 @@ public class Cliente {
      * @param titulo el título del libro a devolver.
      * @return true si el libro fue devuelto; false de lo contrario.
      */
-    public boolean devolverLibro(String titulo) {
+    public Libro devolverLibro(String titulo) {
         Iterator<Libro> iter = libros.iterator();
-        while (iter.hasNext()) {
-            Libro libro = iter.next();
-            if (libro.getTitulo().equals(titulo)) {
-                iter.remove();
+        if (iter.hasNext()) {
+            do {
+                Libro libro = iter.next();
+                if (libro.getTitulo().equals(titulo)) {
+                    iter.remove();
+                    return libro;
+                }
+            } while (iter.hasNext());
+        }
+        return null;
+    }
+
+    public boolean tieneLibro(String titulo){
+        for (Libro libro: libros) {
+            if(libro.getTitulo().equals(titulo)){
                 return true;
             }
         }
         return false;
+    }
+
+    public String verLibros(){
+        StringBuilder sb = new StringBuilder();
+        for (Libro libro: libros) {
+            sb.append(libro);
+        }
+        return sb.toString();
     }
 }

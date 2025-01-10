@@ -113,6 +113,37 @@ public class Biblioteca {
         return "No es cliente de nuestra biblioteca";
     }
 
+    public String prestarLibro(String titulo, String nombre, String apellido){
+        if(consultarStock(titulo) > 0 && esCliente(nombre, apellido)){
+            Libro libro = buscar(titulo);
+            libro.actualizarStock(-1);
+            Cliente cliente = buscarCliente(nombre, apellido);
+            cliente.agregarLibro(libro);
+            return String.format("Libro: %s -- Cliente: %s", libro.getTitulo(), cliente.nomYApell());
+        }
+        return "No se puede prestar el libro.\nRevisar datos solicitados.";
+    }
+
+    public String devolverLibro(String titulo, String nombre, String apellido){
+        if(!esCliente(nombre, apellido)){
+            return "No es cliente";
+        }
+        Cliente cliente = buscarCliente(nombre, apellido);
+        if(!cliente.tieneLibro(titulo)){
+            return "El cliente no tiene el libro";
+        }
+        Libro libro = cliente.devolverLibro(titulo);
+        libro.actualizarStock(1);
+        return String.format("Libro %s devuelto por Cliente: %s", libro.getTitulo(), cliente.nomYApell());
+    }
+
+    public String consultarPrestamo(String titulo, String nombre, String apellido){
+        if(!esCliente(nombre, apellido)){
+            return "No es cliente";
+        }
+        return buscarCliente(nombre, apellido).verLibros();
+    }
+
     private Cliente buscarCliente(String nombre, String apellido){
         for (Cliente cliente: clientes) {
             if(cliente.getNombre().equals(nombre) && cliente.getApellido().equals(apellido)){
