@@ -20,13 +20,4 @@ public class Alumno {
     @Builder.Default
     private List<Carrera> carreras = new ArrayList<>();
 
-    public void agregarCarrera(Carrera carrera){
-        if(carrera != null){
-            carreras.add(carrera);
-        }
-    }
-
-    public boolean quitarCarrera(Carrera carrera){
-        return carreras.remove(carrera);
-    }
 }
