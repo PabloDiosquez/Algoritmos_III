@@ -42,38 +42,45 @@ public class Cliente {
     }
 
     /**
-     * Devuelve un libro por título. Si el libro existe en la lista, lo elimina y retorna true.
-     * Si no se encuentra, retorna false.
+     * Devuelve un libro por título. Si el libro existe en la lista, lo elimina y lo retorna.
+     * Si no se encuentra, retorna null.
      * @param titulo el título del libro a devolver.
-     * @return true si el libro fue devuelto; false de lo contrario.
+     * @return el libro devuelto si se encuentra; null de lo contrario.
      */
     public Libro devolverLibro(String titulo) {
         Iterator<Libro> iter = libros.iterator();
-        if (iter.hasNext()) {
-            do {
-                Libro libro = iter.next();
-                if (libro.getTitulo().equals(titulo)) {
-                    iter.remove();
-                    return libro;
-                }
-            } while (iter.hasNext());
+        while (iter.hasNext()) {
+            Libro libro = iter.next();
+            if (libro.getTitulo().equals(titulo)) {
+                iter.remove();
+                return libro;
+            }
         }
         return null;
     }
 
-    public boolean tieneLibro(String titulo){
-        for (Libro libro: libros) {
-            if(libro.getTitulo().equals(titulo)){
+    /**
+     * Verifica si un libro con el título dado existe en la lista de libros del cliente.
+     * @param titulo el título del libro a verificar.
+     * @return true si el libro está presente; false de lo contrario.
+     */
+    public boolean tieneLibro(String titulo) {
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equals(titulo)) {
                 return true;
             }
         }
         return false;
     }
 
-    public String verLibros(){
+    /**
+     * Retorna una representación en cadena de todos los libros asociados al cliente.
+     * @return una cadena que representa la lista de libros.
+     */
+    public String verLibros() {
         StringBuilder sb = new StringBuilder();
-        for (Libro libro: libros) {
-            sb.append(libro);
+        for (Libro libro : libros) {
+            sb.append(libro).append("\n");
         }
         return sb.toString();
     }
