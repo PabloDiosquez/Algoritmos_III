@@ -43,6 +43,24 @@ public class Biblioteca {
         return "El libro no forma parte de la colección de la biblioteca";
     }
 
+    public int consultarStock(String titulo){
+        return consultarStock(libro -> libro.getTitulo().equals(titulo));
+    }
+
+    public int consultarStock(int ISBN){
+        return consultarStock(libro -> libro.getISBN() == ISBN);
+    }
+
+    private int consultarStock(Predicate<Libro> criterio){
+        if(pertenece(criterio)){
+            return buscar(criterio).getStock();
+        }
+        return 0;
+    }
+    private Libro buscar(int ISBN){
+        return buscar(libro -> libro.getISBN() == ISBN);
+    }
+
     private Libro buscar(String titulo){
         return buscar(libro -> libro.getTitulo().equals(titulo));
     }
