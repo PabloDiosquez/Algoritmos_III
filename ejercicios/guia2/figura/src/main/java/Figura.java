@@ -1,3 +1,3 @@
-public abstract class Figura {
-    public abstract double area();
+public interface Figura {
+    double area();
 }
