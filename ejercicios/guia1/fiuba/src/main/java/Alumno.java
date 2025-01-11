@@ -20,4 +20,7 @@ public class Alumno {
     @Builder.Default
     private List<Carrera> carreras = new ArrayList<>();
 
+    public void agregarCarrera(Carrera carrera){
+        carreras.add(carrera);
+    }
 }

@@ -21,5 +21,6 @@ public class Carrera {
     private List<Materia> materias = new ArrayList<>();
 
     @Getter
-    private int creditosTotales;
+    @Builder.Default
+    private int creditosTotales = 0;
 }
