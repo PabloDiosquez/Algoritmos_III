@@ -4,12 +4,11 @@ import lombok.NonNull;
 import lombok.ToString;
 
 @Builder
+@Getter
 @ToString
 public class Materia {
-    @Getter
     private @NonNull String codigo;
 
-    @Getter
     private @NonNull String nombre;
 
     private int creditos;

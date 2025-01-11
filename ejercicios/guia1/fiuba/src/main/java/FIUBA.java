@@ -100,7 +100,31 @@ public class FIUBA {
                 alumno.getApellido(), alumno.getNombre(), carrera.getNombre());
     }
 
-    
+    public String marcarMateriaAprobada(int legajoAlumno, String nombreCarrera, String codigoMateria) {
+        if (!esAlumno(alumno -> alumno.getLegajo() == legajoAlumno)) {
+            return String.format("El legajo %d no corresponde a un alumno registrado.", legajoAlumno);
+        }
+
+        Alumno alumno = buscarAlumno(a -> a.getLegajo() == legajoAlumno);
+        Carrera carrera = buscarCarrera(c -> c.getNombre().equals(nombreCarrera));
+
+        if (carrera == null) {
+            return String.format("La carrera '%s' no forma parte de la oferta académica de FIUBA.", nombreCarrera);
+        }
+
+        if (!alumno.esAlumnoCarrera(nombreCarrera)) {
+            return String.format("El alumno con legajo %d no está inscripto en la carrera '%s'.", legajoAlumno, nombreCarrera);
+        }
+
+        if (carrera.buscarMateria(codigoMateria) == null) {
+            return String.format("La materia con código '%s' no se encuentra en la carrera '%s'.", codigoMateria, nombreCarrera);
+        }
+
+        alumno.aprobarMateria(carrera.getNombre(), carrera.buscarMateria(codigoMateria));
+        return String.format("La materia con código '%s' ha sido marcada como aprobada para el alumno con legajo %d en la carrera '%s'.",
+                codigoMateria, legajoAlumno, nombreCarrera);
+    }
+
     private boolean esAlumno(Predicate<Alumno> criterio){
         for (Alumno alumno: alumnos) {
             if(criterio.test(alumno)){

@@ -20,7 +20,23 @@ public class Carrera {
     @ToString.Exclude
     private List<Materia> materias = new ArrayList<>();
 
-    @Getter
-    @Builder.Default
-    private int creditosTotales = 0;
+    public void agregarMateria(Materia materia){
+        materias.add(materia);
+    }
+    public int obtenerCreditosTotales(){
+        int creditosTotales = 0;
+        for (Materia materia: materias) {
+            creditosTotales += materia.getCreditos();
+        }
+        return creditosTotales;
+    }
+
+    public Materia buscarMateria(String codigo){
+        for (Materia materia: materias) {
+            if(materia.getCodigo().equals(codigo)){
+                return materia;
+            }
+        }
+        return null;
+    }
 }
