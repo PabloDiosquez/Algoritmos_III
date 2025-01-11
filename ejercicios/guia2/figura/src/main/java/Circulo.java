@@ -1,5 +1,5 @@
 public class Circulo implements Figura{
-    private double radio;
+    private final double radio;
 
     public Circulo(double radio){
         this.radio = radio;

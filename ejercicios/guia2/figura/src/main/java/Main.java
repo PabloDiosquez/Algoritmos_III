@@ -7,7 +7,7 @@ public class Main {
         figuras.add(new Circulo(3));       // un circulo de radio 3
         figuras.add(new Cuadrado(5));      // un cuadrado de lado 5
         figuras.add(new Rectangulo(2, 4)); // un rectangulo de 2x4
-        System.out.printf("El area total es: %f", areaTotal(figuras));
+        System.out.printf("El area total es: %f\n", areaTotal(figuras));
     }
 
     private static double areaTotal(List<Figura> figuras) {
