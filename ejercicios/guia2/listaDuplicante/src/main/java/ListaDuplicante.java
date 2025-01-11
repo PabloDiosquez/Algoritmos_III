@@ -1,5 +1,5 @@
 public interface ListaDuplicante<T> {
 
-    void add(T x);
+    boolean add(T x);
     T get(int i);
 }

@@ -8,9 +8,9 @@ public class ListaDuplicanteC<T> implements ListaDuplicante<T>{
         items = new ArrayList<>();
     }
 
-    public void add(T x){
+    public boolean add(T x){
         items.add(x);
-        items.add(x);
+        return items.add(x);
     }
 
     public T get(int i){

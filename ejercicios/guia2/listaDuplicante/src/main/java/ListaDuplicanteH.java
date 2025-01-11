@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
-public class ListaDuplicanteH<T> extends ArrayList<T> {
+public class ListaDuplicanteH<T> extends ArrayList<T> implements ListaDuplicante<T>{
 
     @Override
     public boolean add(T x){
-        return true;
+        super.add(x);
+        return super.add(x);
     }
 }
