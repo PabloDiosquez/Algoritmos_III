@@ -100,29 +100,34 @@ public class FIUBA {
                 alumno.getApellido(), alumno.getNombre(), carrera.getNombre());
     }
 
-    public String marcarMateriaAprobada(int legajoAlumno, String nombreCarrera, String codigoMateria) {
+    public String marcarMateriaAprobada(int legajoAlumno, String codCarrera, String codigoMateria) {
         if (!esAlumno(alumno -> alumno.getLegajo() == legajoAlumno)) {
             return String.format("El legajo %d no corresponde a un alumno registrado.", legajoAlumno);
         }
 
         Alumno alumno = buscarAlumno(a -> a.getLegajo() == legajoAlumno);
-        Carrera carrera = buscarCarrera(c -> c.getNombre().equals(nombreCarrera));
+        Carrera carrera = buscarCarrera(c -> c.getNombre().equals(codCarrera));
 
         if (carrera == null) {
-            return String.format("La carrera '%s' no forma parte de la oferta académica de FIUBA.", nombreCarrera);
+            return String.format("La carrera '%s' no forma parte de la oferta académica de FIUBA.", codCarrera);
         }
 
-        if (!alumno.esAlumnoCarrera(nombreCarrera)) {
-            return String.format("El alumno con legajo %d no está inscripto en la carrera '%s'.", legajoAlumno, nombreCarrera);
+        if (!alumno.esAlumnoCarrera(codCarrera)) {
+            return String.format("El alumno con legajo %d no está inscripto en la carrera '%s'.", legajoAlumno, codCarrera);
         }
 
         if (carrera.buscarMateria(codigoMateria) == null) {
-            return String.format("La materia con código '%s' no se encuentra en la carrera '%s'.", codigoMateria, nombreCarrera);
+            return String.format("La materia con código '%s' no se encuentra en la carrera '%s'.", codigoMateria, codCarrera);
         }
 
         alumno.aprobarMateria(carrera.getNombre(), carrera.buscarMateria(codigoMateria));
         return String.format("La materia con código '%s' ha sido marcada como aprobada para el alumno con legajo %d en la carrera '%s'.",
-                codigoMateria, legajoAlumno, nombreCarrera);
+                codigoMateria, legajoAlumno, codCarrera);
+    }
+
+    public String consultarEstadoCarrera(int legajo, String codigo){
+        Alumno alumno = buscarAlumno(a -> a.getLegajo() == legajo);
+        return alumno.estadoCarrera(codigo);
     }
 
     private boolean esAlumno(Predicate<Alumno> criterio){

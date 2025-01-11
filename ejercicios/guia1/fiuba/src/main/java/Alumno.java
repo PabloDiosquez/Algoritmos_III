@@ -3,9 +3,8 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 @Builder
 @ToString
 public class Alumno {
@@ -28,16 +27,31 @@ public class Alumno {
         carreras.add(carrera);
     }
 
-    public void aprobarMateria(String carrera, Materia materia){
-        materiasAprobadas.get(carrera).add(materia);
+    public void aprobarMateria(String codCarrera, Materia materia){
+        materiasAprobadas.get(codCarrera).add(materia);
     }
 
-    public boolean esAlumnoCarrera(String nombreCarrera){
+    public boolean esAlumnoCarrera(String codCarrera){
         for (Carrera carrera: carreras) {
-            if(carrera.getNombre().equals(nombreCarrera)){
+            if(carrera.getNombre().equals(codCarrera)){
                 return true;
             }
         }
         return false;
+    }
+
+    public String estadoCarrera(String codigo) {
+        if(!esAlumnoCarrera(codigo)){
+            return "No es alumno de la carrera";
+        }
+        StringBuilder sb = new StringBuilder();
+        int creditosAct = 0;
+        sb.append("Materias aprobadas:");
+        for (Materia materia: materiasAprobadas.get(codigo)) {
+            sb.append(materia.getNombre());
+            creditosAct += materia.getCreditos();
+        }
+        sb.append(String.format("Créditos actuales: %d", creditosAct));
+        return sb.toString();
     }
 }
