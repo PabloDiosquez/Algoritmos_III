@@ -14,9 +14,6 @@ public class Alumno {
     @Getter
     private @NonNull String nombre;
 
-    @Getter
-    private @NonNull String apellido;
-
     @Builder.Default
     private List<Carrera> carreras = new ArrayList<>();
 
@@ -31,27 +28,5 @@ public class Alumno {
         materiasAprobadas.get(codCarrera).add(materia);
     }
 
-    public boolean esAlumnoCarrera(String codCarrera){
-        for (Carrera carrera: carreras) {
-            if(carrera.getNombre().equals(codCarrera)){
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public String estadoCarrera(String codigo) {
-        if(!esAlumnoCarrera(codigo)){
-            return "No es alumno de la carrera";
-        }
-        StringBuilder sb = new StringBuilder();
-        int creditosAct = 0;
-        sb.append("Materias aprobadas:");
-        for (Materia materia: materiasAprobadas.get(codigo)) {
-            sb.append(materia.getNombre());
-            creditosAct += materia.getCreditos();
-        }
-        sb.append(String.format("Créditos actuales: %d", creditosAct));
-        return sb.toString();
-    }
 }

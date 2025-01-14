@@ -18,7 +18,7 @@ public class FIUBA {
     public Boolean crearCarrera(Integer codigo, String nombre){
         if(buscarCarrera(codigo) == null){
             Carrera carrera = Carrera.builder()
-                    .codigo(generarNumero())
+                    .codigo(codigo)
                     .nombre(nombre)
                     .build();
             return true;
@@ -45,6 +45,25 @@ public class FIUBA {
     }
 
     // ------------------- ALUMNOS -------------------
+
+    public Boolean crearAlumno(Integer legajo, String nombre){
+        if(buscarAlumno(legajo) == null){
+            Alumno alumno = Alumno.builder()
+                    .legajo(legajo)
+                    .nombre(nombre)
+                    .build();
+            return true;
+        }
+        return false;
+    }
+    public Boolean quitarAlumno(Integer legajo){
+        Alumno alumno = buscarAlumno(legajo);
+        if(alumno == null){
+            return false;
+        }
+        alumnos.remove(alumno);
+        return false;
+    }
 
     private Alumno buscarAlumno(Integer legajo){
         return new Buscador<Alumno>(alumno -> alumno.getLegajo() == legajo)
