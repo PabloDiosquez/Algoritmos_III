@@ -1,12 +1,16 @@
 @startuml
 
 class FIUBA {
++carreras: List<Carrera>
++alumnos: List<Alumno>
+
 + crearAlumno(datos de alumno...): Boolean
 + quitarAlumno(Integer: legajo): Boolean
 + crearCarrera(datos de carrera...): Boolean
 + quitarCarrera(Integer: codigo): Boolean
 + incribirACarrera(Integer: legajo, Integer: codigo): Boolean
 + consultarEstado(Integer: legajo, Integer: codigo): ???
++ marcarComoAprobada(Integer: legajo, Integer: codigo): Boolean
 }
 
 class Alumno {
@@ -26,8 +30,16 @@ class Materia {
 
 }
 
+class Buscador {
++ pertenece(List T: items, Predicate T: criterio): Boolean
++ buscar(List T: items, Predicate T: criterio): T
+}
+
 FIUBA "1" *--- "many" Alumno
 FIUBA "1" *--- "many" Carrera
+FIUBA o--> Buscador
+Carrera o--> Buscador
+Alumno o--> Buscador
 Carrera "1" o--- "many" Materia
 
 @enduml
