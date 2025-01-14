@@ -1,11 +1,7 @@
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 
 @Builder
 @Getter
-@ToString
 public class Materia {
     private @NonNull String codigo;
 
