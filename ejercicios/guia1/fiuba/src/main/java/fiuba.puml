@@ -1,11 +1,33 @@
 @startuml
 
-class FIUBA {}
+class FIUBA {
++ crearAlumno(datos de alumno...): Boolean
++ quitarAlumno(Integer: legajo): Boolean
++ crearCarrera(datos de carrera...): Boolean
++ quitarCarrera(Integer: codigo): Boolean
++ incribirACarrera(Integer: legajo, Integer: codigo): Boolean
++ consultarEstado(Integer: legajo, Integer: codigo): ???
+}
 
-class Alumno {}
+class Alumno {
++ agregarCarrera(Carrera: carrera): void
++ quitarCarrera(Carrera: carrera): Integer
++ consultarEstado(Integer: codigo): ???
++ aprobarMateria(Integer: codigoCarrera, Integer: codigoMateria)
+}
 
-class Carrera {}
+class Carrera {
++ crearMateria(datos materia...): Boolean|void
++ quitarMateria(Integer: codigo): Boolean
++ obtenerCreditosTotales(): Integer
+}
 
-class Materia {}
+class Materia {
+
+}
+
+FIUBA "1" *--- "many" Alumno
+FIUBA "1" *--- "many" Carrera
+Carrera "1" o--- "many" Materia
 
 @enduml
