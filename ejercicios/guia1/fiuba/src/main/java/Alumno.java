@@ -9,7 +9,7 @@ import java.util.*;
 @ToString
 public class Alumno {
     @Getter
-    private @NonNull int legajo;
+    private @NonNull Integer legajo;
 
     @Getter
     private @NonNull String nombre;

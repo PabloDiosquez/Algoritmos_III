@@ -11,7 +11,7 @@ import java.util.List;
 public class Carrera {
 
     @Getter
-    private @NonNull String codigo;
+    private @NonNull Integer codigo;
 
     @Getter
     private @NonNull String nombre;
@@ -31,12 +31,8 @@ public class Carrera {
         return creditosTotales;
     }
 
-    public Materia buscarMateria(String codigo){
-        for (Materia materia: materias) {
-            if(materia.getCodigo().equals(codigo)){
-                return materia;
-            }
-        }
-        return null;
+    public Materia buscarMateria(Integer codigo){
+        return new Buscador<Materia>(materia -> materia.getCodigo() == codigo)
+                .buscar(materias);
     }
 }

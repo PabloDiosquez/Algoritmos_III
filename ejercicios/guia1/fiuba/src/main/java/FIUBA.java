@@ -15,28 +15,46 @@ public class FIUBA {
 
     // ------------------- CARRERAS -------------------
 
+    public Boolean crearCarrera(Integer codigo, String nombre){
+        if(buscarCarrera(codigo) == null){
+            Carrera carrera = Carrera.builder()
+                    .codigo(generarNumero())
+                    .nombre(nombre)
+                    .build();
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean quitarCarrera(Integer codigo){
+        Carrera carrera = buscarCarrera(codigo);
+        if(carrera == null){
+            return false;
+        }
+        carreras.remove(carrera);
+        return true;
+    }
+
+    private Carrera buscarCarrera(Integer codigo){
+        return new Buscador<Carrera>(carrera -> carrera.getCodigo() == codigo)
+                .buscar(carreras);
+    }
+
+    private Materia buscarMateria(Carrera carrera, Integer codigo){
+        return carrera.buscarMateria(codigo);
+    }
 
     // ------------------- ALUMNOS -------------------
 
-
+    private Alumno buscarAlumno(Integer legajo){
+        return new Buscador<Alumno>(alumno -> alumno.getLegajo() == legajo)
+                .buscar(alumnos);
+    }
 
     // ----------------- AUXILIARES -------------------
 
 
-    private static String generarCodigo(int longitud) {
-        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder stringAleatorio = new StringBuilder(longitud);
-        Random random = new Random();
-
-        for (int i = 0; i < longitud; i++) {
-            int indice = random.nextInt(caracteres.length());
-            stringAleatorio.append(caracteres.charAt(indice));
-        }
-
-        return stringAleatorio.toString();
-    }
-
-    private static int generarLegajo(){
+    private static int generarNumero(){
         return new Random().nextInt(1000);
     }
 

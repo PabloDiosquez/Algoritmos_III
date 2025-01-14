@@ -3,7 +3,7 @@ import lombok.*;
 @Builder
 @Getter
 public class Materia {
-    private @NonNull String codigo;
+    private @NonNull Integer codigo;
 
     private @NonNull String nombre;
 

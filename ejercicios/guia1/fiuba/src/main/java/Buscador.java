@@ -2,20 +2,13 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Buscador<T> {
-    public Boolean pertenece(List<T> items, Predicate<T> criterio){
-        for (T item: items) {
-            if(criterio.test(item)){
-                return true;
-            }
-        }
-        return false;
+    private Predicate<T> estrategiaBusqueda;
+
+    public Buscador(Predicate<T> estrategiaBusqueda) {
+        this.estrategiaBusqueda = estrategiaBusqueda;
     }
-    public T buscar(List<T> items, Predicate<T> criterio){
-        for (T item: items) {
-            if(criterio.test(item)){
-                return item;
-            }
-        }
-        return null;
+
+    public T buscar(List<T> items) {
+        return items.stream().filter(estrategiaBusqueda).findFirst().orElse(null);
     }
 }
