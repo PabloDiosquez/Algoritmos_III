@@ -35,8 +35,14 @@ public class FIUBA {
         return true;
     }
 
+    // PRE: El legajo y el código corresponden a un alumno y a una carrera existentes respecticvamente.
+    public Boolean inscribirACarrera(Integer legajo, Integer codigo){
+        Carrera carrera = buscarCarrera(codigo);
+        return buscarAlumno(legajo).agregarCarrera(carrera);
+    }
+
     private Carrera buscarCarrera(Integer codigo){
-        return new Buscador<Carrera>(carrera -> carrera.getCodigo() == codigo)
+        return new Buscador<Carrera>(carrera -> carrera.getCodigo().equals(codigo))
                 .buscar(carreras);
     }
 
@@ -65,16 +71,20 @@ public class FIUBA {
         return false;
     }
 
+    public String consultarEstadoCarrera(Integer legajo, Integer codigo){
+        Carrera carrera = buscarCarrera(codigo);
+        return buscarAlumno(legajo).consultarEstado(carrera);
+    }
+
+    public Boolean marcarMateriaComoAprobada(Integer legajo, Integer codigoCarrera,
+                                             Integer codigoMateria){
+        Alumno alumno = buscarAlumno(legajo);
+        Carrera carrera = buscarCarrera(codigoCarrera);
+        return alumno.aprobarMateria(codigoCarrera, carrera.buscarMateria(codigoMateria));
+    }
+
     private Alumno buscarAlumno(Integer legajo){
-        return new Buscador<Alumno>(alumno -> alumno.getLegajo() == legajo)
+        return new Buscador<Alumno>(alumno -> alumno.getLegajo().equals(legajo))
                 .buscar(alumnos);
     }
-
-    // ----------------- AUXILIARES -------------------
-
-
-    private static int generarNumero(){
-        return new Random().nextInt(1000);
-    }
-
 }

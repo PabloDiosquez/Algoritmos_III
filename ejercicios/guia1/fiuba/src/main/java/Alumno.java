@@ -18,15 +18,27 @@ public class Alumno {
     private List<Carrera> carreras = new ArrayList<>();
 
     @Builder.Default
-    private HashMap<String, List<Materia>> materiasAprobadas = new HashMap<>();
+    private HashMap<Integer, List<Materia>> materiasAprobadas = new HashMap<>();
 
-    public void agregarCarrera(Carrera carrera){
-        carreras.add(carrera);
+    public Boolean agregarCarrera(Carrera carrera){
+        return carreras.add(carrera);
     }
 
-    public void aprobarMateria(String codCarrera, Materia materia){
-        materiasAprobadas.get(codCarrera).add(materia);
+    public Boolean aprobarMateria(Integer codigoCarrera, Materia materia){
+        if(materiasAprobadas.containsKey(codigoCarrera)){
+            materiasAprobadas.get(codigoCarrera).add(materia);
+            return true;
+        }
+        return false;
     }
 
 
+    public String consultarEstado(Carrera carrera) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(carrera.getNombre());
+        for (Materia materia: materiasAprobadas.get(carrera.getCodigo())) {
+            sb.append(materia.getNombre());
+        }
+        return sb.toString();
+    }
 }

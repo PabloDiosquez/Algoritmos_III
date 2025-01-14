@@ -32,7 +32,7 @@ public class Carrera {
     }
 
     public Materia buscarMateria(Integer codigo){
-        return new Buscador<Materia>(materia -> materia.getCodigo() == codigo)
+        return new Buscador<Materia>(materia -> materia.getCodigo().equals(codigo))
                 .buscar(materias);
     }
 }

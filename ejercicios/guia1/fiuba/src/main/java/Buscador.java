@@ -9,6 +9,11 @@ public class Buscador<T> {
     }
 
     public T buscar(List<T> items) {
-        return items.stream().filter(estrategiaBusqueda).findFirst().orElse(null);
+        for (T item: items) {
+            if(estrategiaBusqueda.test(item)){
+                return item;
+            }
+        }
+        return null;
     }
 }
