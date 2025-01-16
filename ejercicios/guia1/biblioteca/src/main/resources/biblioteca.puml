@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Libro{
+-ISBN: int
+-titulo: String
+-fechaPublicacion: LocalDate
+-autores: List<String>
+-stock: int
+
++consultarStock(): int
++setFecha(int: dia, int: mes, int: año)
++agregarAutor(String: autor): void
++verAutores(): List<String>
+}
+
+class Cliente{
+-id: int
+-nombre: String
+-libros: Map<int, Libro>
+
++agregarLibro(Libro: libro): boolean
++devolverLibro(int: ISBN): boolean
++verLibros(): List<Libro>
+}
+
+class Biblioteca{
+-nombre: String
+-libros: Map<String, Libro>
+-clientes: Map<int, Cliente>
+
++agregar(Libro: libro): boolean
++remover(int: ISBN): boolean
++agregar(Cliente: cliente): boolean
++quitar(int id): boolean
++prestar(int: ISBN, int: id): boolean
++reponer(int: ISBN, int: id): boolean
++consultarEstado(int id): String
++consultarStock(int: ISBN): int
++consultarStock(String: autor): int
++consultarStock(LocalDate: fecha): int
+}
+
+class GestorBiblioteca{
++crearLibro(int: ISBN, String: autor): Libro
++crearCliente(int id, String: nombre): Cliente
++remover(int: ISBN): boolean
++quitar(int: id): boolean
+}
+
+GestorBiblioteca "1" o-- "many" Biblioteca
+Biblioteca "1" o-- "many" Libro
+Biblioteca "1" o-- "many" Cliente
+
+@enduml
