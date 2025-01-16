@@ -1,0 +1,39 @@
+@startuml
+class Cartuchera{
+-pinceles: List<Pincel>
+
++getPinceles(): List<Pincel>
+}
+
+class Compas{
++ dibujarCirculoConRadio(int: radio): Circulo
+}
+
+class Pincel{
++seleccionarColor(Color: color): void
++pintar(Figura: figura): void
+}
+
+abstract class Figura{
+-color: Color
+
++abstract calcularSuperficie(): int
+}
+
+class Circulo {
+-radio: int
+
++calcularSuperficie(): int
+}
+
+class Color{
+-color: String
+}
+
+Cartuchera "1" o-- "many" Pincel
+Cartuchera "1" o-- "1" Compas
+Figura <|-- Circulo
+Figura "1" o-- "1" Color
+Pincel -- Figura
+
+@enduml
