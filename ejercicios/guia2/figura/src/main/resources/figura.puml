@@ -1,0 +1,27 @@
+@startuml
+
+interface Figura {
+    +area(): Double
+}
+
+class Circulo {
+    -radio: Double
+    +area(): Double
+}
+
+class Rectángulo {
+    -base: Double
+    -altura: Double
+    +area(): Double
+}
+
+class Cuadrado {
+    -lado: Double
+    +area(): Double
+}
+
+Figura <|.. Circulo
+Figura <|.. Rectángulo
+Figura <|.. Cuadrado
+
+@enduml
