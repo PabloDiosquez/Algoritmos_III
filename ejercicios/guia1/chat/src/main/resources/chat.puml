@@ -1,0 +1,39 @@
+@startuml
+
+class App {
+  -usuarios: List<Usuario>
+  -conversaciones: List<Conversacion>
+  +enviarMensaje(emisor: Usuario, receptor: Usuario, contenido: String): void
+  +buscarConversacion(usuario1: Usuario, usuario2: Usuario): ConversacionPrivada
+}
+
+class Usuario {
+  -id: Integer
+  -nombre: String
+  +verHistorial(contacto: Usuario): List<Mensaje>
+}
+
+class Conversacion {
+  -id: String
+  -mensajes: List<Mensaje>
+  +agregarMensaje(mensaje: Mensaje): void
+  +obtenerHistorial(): List<Mensaje>
+}
+
+class ConversacionPrivada {
+  -participante1: Usuario
+  -participante2: Usuario
+}
+
+class Mensaje {
+  -emisor: Usuario
+  -contenido: String
+}
+
+App "1" *-- "*" Usuario
+App "1" *-- "*" Conversacion
+ConversacionPrivada --|> Conversacion
+Conversacion "1" *-- "*" Mensaje
+Usuario "1" -- "*" ConversacionPrivada
+
+@enduml
