@@ -1,45 +1,41 @@
 @startuml
 
 class FIUBA {
-+carreras: List<Carrera>
-+alumnos: List<Alumno>
+-carreras: List<Carrera>
+-alumnos: List<Alumno>
 
-+ crearAlumno(datos de alumno...): Boolean
-+ quitarAlumno(Integer: legajo): Boolean
-+ crearCarrera(datos de carrera...): Boolean
-+ quitarCarrera(Integer: codigo): Boolean
-+ incribirACarrera(Integer: legajo, Integer: codigo): Boolean
-+ consultarEstado(Integer: legajo, Integer: codigo): ???
-+ marcarComoAprobada(Integer: legajo, Integer: codigo): Boolean
++inscribir(alumno: Alumno, carrera: Carrera): Boolean
++aprobar(alumno: Alumno, materia: Materia, carrera: Carrera): Boolean
++verEstado(alumno: Alumno, carrera: Carrera): String
 }
 
 class Alumno {
-+ agregarCarrera(Carrera: carrera): void
-+ quitarCarrera(Carrera: carrera): Integer
-+ consultarEstado(Integer: codigo): ???
-+ aprobarMateria(Integer: codigoCarrera, Integer: codigoMateria)
+-padron: String
+-nombre: String
+-carreras: List<Carrera>
+-materiasAprobadas: List<Materia>
 }
 
 class Carrera {
-+ crearMateria(datos materia...): Boolean|void
-+ quitarMateria(Integer: codigo): Boolean
-+ obtenerCreditosTotales(): Integer
+-codigo: String
+-nombre: String
+-obligatorias: List<Materia>
+-optativas: List<Materia>
+-creditos: Integer
 }
 
 class Materia {
-
+-codigo: String
+-nombre: String
+-creditos: Integer
 }
 
-class Buscador {
-+ pertenece(List T: items, Predicate T: criterio): Boolean
-+ buscar(List T: items, Predicate T: criterio): T
-}
+'Relaciones
 
-FIUBA "1" *--- "many" Alumno
-FIUBA "1" *--- "many" Carrera
-FIUBA o--> Buscador
-Carrera o--> Buscador
-Alumno o--> Buscador
-Carrera "1" o--- "many" Materia
+FIUBA "1" *-- "*" Carrera: carreras
+FIUBA "1" *-- "*" Alumno: alumnos
+Carrera "1" o-- "*" Materia: obligatorias
+Carrera "1" o-- "*" Materia: optativas
+Alumno "1" o-- "*" Carrera: carreras
 
 @enduml

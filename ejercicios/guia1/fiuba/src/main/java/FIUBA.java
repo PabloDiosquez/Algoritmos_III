@@ -41,6 +41,7 @@ public class FIUBA {
         return buscarAlumno(legajo).agregarCarrera(carrera);
     }
 
+    // TODO: Hacer que la dependecia del buscador sea explicita...
     private Carrera buscarCarrera(Integer codigo){
         return new Buscador<Carrera>(carrera -> carrera.getCodigo().equals(codigo))
                 .buscar(carreras);
