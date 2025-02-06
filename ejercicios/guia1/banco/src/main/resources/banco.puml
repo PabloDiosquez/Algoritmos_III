@@ -1,0 +1,40 @@
+@startuml
+
+class Banco {
+-usuarios: List<Usuario>
+-cuentas: List<Cuenta>
+
++crear(usuario: Usuario, cuenta: Cuenta): Boolean
+transferir(usuario: Usuario, origen: Cuenta, destino: Cuenta, monto: double): Boolean
+}
+
+class Usuario {
+-id: String
+-nombre: String
+-cuentas: List<Cuenta>
+
++depositar(cuenta: Cuenta, monto: double): Boolean
+
+}
+
+class Cuenta {
+-id: String
+-titular: Usuario
+-monto: double
+
++depositar(monto: double): Boolean
+}
+
+class CajaDeAhorro {
+-{static} interes: double
+
++calcularSaldo(monto: double, meses: Integer): double
+}
+
+Banco "1" *-- "*" Usuario: usuarios
+Banco "1" *-- "*" Cuenta: cuentas
+Usuario "1" o-- "*" Cuenta: cuentas
+Cuenta <|-- CajaDeAhorro
+
+
+@enduml
