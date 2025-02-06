@@ -1,0 +1,46 @@
+@startuml
+
+class Sistema {
+  -usuarios: List<Usuario>
+  -mensajes: List<Mensaje>
+  -sesionesActivas: Map<Usuario, Boolean>
+
+  +autenticar(us: String, password: String): Boolean
+  +cerrarSesion(us: Usuario): void
+  +enviarMensaje(emisor: Usuario, receptor: Usuario, contenido: String): Boolean
+  +obtenerMensajesEnviados(us: Usuario): List<Mensaje>
+  +obtenerMensajesRecibidos(us: Usuario): List<Mensaje>
+  +salir(us: Usuario): void
+}
+
+abstract class Usuario {
+  -us: String
+  -password: String
+  -activo: Boolean
+}
+
+class Mensaje {
+  -emisor: Usuario
+  -receptor: Usuario
+  -contenido: String
+  -timestamp: Date
+}
+
+class Huesped {
+  +iniciarSesion(us: String, password: String): Boolean
+  +cerrarSesion(): void
+}
+
+class Empleado {
+  +iniciarSesion(us: String, password: String): Boolean
+  +cerrarSesion(): void
+}
+
+Sistema "1" *-- "*" Usuario: registra
+Sistema "1" *-- "*" Mensaje: almacena
+Usuario <|-- Huesped
+Usuario <|-- Empleado
+Mensaje "1" --> "1" Usuario: emisor
+Mensaje "1" --> "1" Usuario: receptor
+
+@enduml
