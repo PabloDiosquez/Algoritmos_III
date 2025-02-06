@@ -58,10 +58,28 @@ public class Biblioteca {
         return true;
     }
 
-    public Boolean prestarCopia(String ISBN, Usuario us) {
+    public boolean prestarCopia(String ISBN, Usuario usuario) {
+        if (!usuarios.containsKey(usuario.getId())) {
+            return false;
+        }
+
+        List<Copia> copiasDelLibro = copias.getOrDefault(ISBN, Collections.emptyList());
+
+        Optional<Copia> copiaDisponible = copiasDelLibro.stream()
+                .filter(Copia::getDisponible)
+                .findFirst();
+
+        if (copiaDisponible.isPresent()) {
+            Copia copia = copiaDisponible.get();
+            if (copia.getDisponible()) {
+                copia.setDisponible(false);
+                usuario.agregarCopia(copia);
+                registrarPrestamo(copia, usuario);
+                return true;
+            }
+        }
         return false;
     }
-
     public Boolean devolverCopia(Copia copia){
         return false;
     }
@@ -74,5 +92,17 @@ public class Biblioteca {
     }
     public int consultarStockPorAutor(String autor) {
         return 0;
+    }
+
+    // Métodos privados
+
+    private void registrarPrestamo(Copia copia, Usuario usuario) {
+        Prestamo prestamo = Prestamo.builder()
+                .copia(copia)
+                .us(usuario)
+                .fechaPrestamo(LocalDate.now())
+                .fechaDevolucion(LocalDate.now().plusDays(15))
+                .build();
+        prestamos.add(prestamo);
     }
 }

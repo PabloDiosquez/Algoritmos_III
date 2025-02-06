@@ -13,4 +13,8 @@ public class Usuario {
     private String nombre;
     @Builder.Default
     private List<Copia> copiasPrestadas;
+
+    public void agregarCopia(Copia copia){
+        copiasPrestadas.add(copia);
+    }
 }
