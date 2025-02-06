@@ -1,39 +1,43 @@
 @startuml
 
 class Banco {
--usuarios: List<Usuario>
--cuentas: List<Cuenta>
+    -usuarios: List<Usuario>
+    -cuentas: List<Cuenta>
 
-+crearCuenta(usuario: Usuario, cuenta: Cuenta): void
-+transferir(origen: Cuenta, destino: Cuenta, monto: double): Boolean
+    +crearCuenta(usuario: Usuario, tipoCuenta: String, tasaInteres: double): Cuenta
+    +transferir(origenId: String, destinoId: String, monto: double): boolean
+    +buscarCuenta(id: String): Cuenta
 }
 
 class Usuario {
--id: String
--nombre: String
--cuentas: List<Cuenta>
+    -id: String
+    -nombre: String
+    -cuentas: List<Cuenta>
 
-+depositar(cuenta: Cuenta, monto: double): Boolean
-
+    +crearCajaAhorro(banco: Banco, tasaInteres: double): CajaDeAhorro
+    +getCuentas(): List<Cuenta>
 }
 
 class Cuenta {
--id: String
--titular: Usuario
--monto: double
-
-+depositar(monto: double): Boolean
+    -id: String
+    -titular: Usuario
+    -saldo: double
+    
+    +depositar(monto: double): boolean
+    +retirar(monto: double): boolean
+    +getSaldo(): double
 }
 
 class CajaDeAhorro {
--{static} interes: double
+    -tasaInteres: double
 
-+calcularSaldo(monto: double, meses: Integer): double
+    +calcularInteres(meses: int): double
+    +aplicarInteres(meses: int): void
 }
 
-Banco "1" *-- "*" Usuario: usuarios
-Banco "1" *-- "*" Cuenta: cuentas
-Usuario "1" o-- "*" Cuenta: cuentas
+Banco "1" *-- "*" Usuario: administra
+Banco "1" *-- "*" Cuenta: registra
+Usuario "1" o-- "*" Cuenta: posee
 Cuenta <|-- CajaDeAhorro
 
 @enduml
