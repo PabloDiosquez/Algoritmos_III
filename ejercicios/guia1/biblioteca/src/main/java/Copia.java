@@ -1,11 +1,12 @@
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
+@Builder
 public class Copia {
     @NonNull
     private String idCopia;
     @NonNull
     private Libro libro;
+    @Getter
     private Boolean disponible;
 }
