@@ -4,7 +4,8 @@ class Banco {
     -usuarios: List<Usuario>
     -cuentas: List<Cuenta>
 
-    +crearCuenta(usuario: Usuario, tipoCuenta: String, tasaInteres: double): Cuenta
+    +crearCuenta(usuario: Usuario): Cuenta
+    +crearCajaAhorro(tasaInteres: double): CajaDeAhorro
     +transferir(origenId: String, destinoId: String, monto: double): boolean
     +buscarCuenta(id: String): Cuenta
 }
@@ -14,18 +15,17 @@ class Usuario {
     -nombre: String
     -cuentas: List<Cuenta>
 
-    +crearCajaAhorro(banco: Banco, tasaInteres: double): CajaDeAhorro
-    +getCuentas(): List<Cuenta>
+    +obtenerCuentas(): List<Cuenta>
 }
 
 class Cuenta {
     -id: String
     -titular: Usuario
     -saldo: double
-    
+
     +depositar(monto: double): boolean
     +retirar(monto: double): boolean
-    +getSaldo(): double
+    +obtenerSaldo(): double
 }
 
 class CajaDeAhorro {
