@@ -8,8 +8,7 @@ import java.util.*;
 public class Biblioteca {
     private Map<String, Libro> libros;
     private Map<String, List<Copia>> copias;
-    @Builder.Default
-    private List<Usuario> usuarios = new ArrayList<>();
+    private Map<String, Usuario> usuarios;
     @Builder.Default
     private List<Prestamo> prestamos = new ArrayList<>();
 
@@ -50,8 +49,13 @@ public class Biblioteca {
         return true;
     }
 
-    public void registrarUsuario(Usuario us) {
-
+    public boolean registrarUsuario(Usuario us) {
+        String id = us.getId();
+        if(usuarios.containsKey(id)){
+            return false;
+        }
+        usuarios.put(id, us);
+        return true;
     }
 
     public Boolean prestarCopia(String ISBN, Usuario us) {
@@ -70,9 +74,5 @@ public class Biblioteca {
     }
     public int consultarStockPorAutor(String autor) {
         return 0;
-    }
-
-    public Libro buscarLibroPorISBN(String ISBN){
-        return libros.get(ISBN);
     }
 }
