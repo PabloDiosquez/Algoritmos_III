@@ -4,8 +4,8 @@ class Banco {
 -usuarios: List<Usuario>
 -cuentas: List<Cuenta>
 
-+crear(usuario: Usuario, cuenta: Cuenta): Boolean
-transferir(usuario: Usuario, origen: Cuenta, destino: Cuenta, monto: double): Boolean
++crearCuenta(usuario: Usuario, cuenta: Cuenta): void
++transferir(origen: Cuenta, destino: Cuenta, monto: double): Boolean
 }
 
 class Usuario {
@@ -35,6 +35,5 @@ Banco "1" *-- "*" Usuario: usuarios
 Banco "1" *-- "*" Cuenta: cuentas
 Usuario "1" o-- "*" Cuenta: cuentas
 Cuenta <|-- CajaDeAhorro
-
 
 @enduml
