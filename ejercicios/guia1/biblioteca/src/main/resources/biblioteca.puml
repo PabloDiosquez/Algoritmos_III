@@ -1,55 +1,53 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-class Libro{
--ISBN: int
--titulo: String
--fechaPublicacion: LocalDate
--autores: List<String>
--stock: int
+class Biblioteca {
+  -catalogo: Map<Libro, List<Copia>>
+  -usuarios: List<Usuario>
+  -prestamos: List<Prestamo>
 
-+consultarStock(): int
-+setFecha(int: dia, int: mes, int: año)
-+agregarAutor(String: autor): void
-+verAutores(): List<String>
+  +agregarLibro(libro: Libro, cantidad: int): void
+  +eliminarLibro(ISBN: String): Boolean
+  +registrarUsuario(usuario: Usuario): void
+  +prestarCopia(ISBN: String, usuario: Usuario): Boolean
+  +devolverCopia(copia: Copia): Boolean
+  +consultarStockPorTitulo(titulo: String): int
+  +consultarStockPorAutor(autor: String): int
+  +consultarStockPorFecha(fecha: LocalDate): int
+  +buscarLibrosPorISBN(ISBN: String): List<Libro>
 }
 
-class Cliente{
--id: int
--nombre: String
--libros: Map<int, Libro>
-
-+agregarLibro(Libro: libro): boolean
-+devolverLibro(int: ISBN): boolean
-+verLibros(): List<Libro>
+class Libro {
+  -ISBN: String
+  -titulo: String
+  -fechaPublicacion: LocalDate
+  -autores: List<String>
 }
 
-class Biblioteca{
--nombre: String
--libros: Map<String, Libro>
--clientes: Map<int, Cliente>
-
-+agregar(Libro: libro): boolean
-+remover(int: ISBN): boolean
-+agregar(Cliente: cliente): boolean
-+quitar(int id): boolean
-+prestar(int: ISBN, int: id): boolean
-+reponer(int: ISBN, int: id): boolean
-+consultarEstado(int id): String
-+consultarStock(int: ISBN): int
-+consultarStock(String: autor): int
-+consultarStock(LocalDate: fecha): int
+class Copia {
+  -idCopia: String
+  -libro: Libro
+  -disponible: Boolean
 }
 
-class GestorBiblioteca{
-+crearLibro(int: ISBN, String: autor): Libro
-+crearCliente(int id, String: nombre): Cliente
-+remover(int: ISBN): boolean
-+quitar(int: id): boolean
+class Usuario {
+  -id: String
+  -nombre: String
+  -copiasPrestadas: List<Copia>
 }
 
-GestorBiblioteca "1" o-- "many" Biblioteca
-Biblioteca "1" o-- "many" Libro
-Biblioteca "1" o-- "many" Cliente
+class Prestamo {
+  -copia: Copia
+  -usuario: Usuario
+  -fechaPrestamo: LocalDate
+  -fechaDevolucion: LocalDate
+}
+
+Biblioteca "1" *-- "*" Libro: cataloga
+Biblioteca "1" *-- "*" Usuario: registra
+Biblioteca "1" *-- "*" Prestamo: gestiona
+Libro "1" *-- "*" Copia: tiene
+Usuario "1" *-- "*" Copia: prestadas
+Prestamo "1" --> "1" Copia
+Prestamo "1" --> "1" Usuario
 
 @enduml
