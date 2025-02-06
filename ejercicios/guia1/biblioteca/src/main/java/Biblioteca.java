@@ -1,8 +1,8 @@
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Predicate;
 
 @Builder
 public class Biblioteca {
@@ -80,21 +80,27 @@ public class Biblioteca {
         }
         return false;
     }
+
+    //TODO: devolverCopia
     public Boolean devolverCopia(Copia copia){
         return false;
     }
 
     public int consultarStockPorTitulo(String titulo) {
-        return 0;
-    }
-    public int consultarStockPorFecha(LocalDate fecha) {
-        return 0;
-    }
-    public int consultarStockPorAutor(String autor) {
-        return 0;
+        return consultarStock(libro -> libro.getTitulo().equals(titulo));
     }
 
-    // Métodos privados
+    public int consultarStockPorFecha(LocalDate fecha) {
+        return consultarStock(libro -> libro.getFechaPublicacion().equals(fecha));
+    }
+
+    public int consultarStockPorAutor(String autor) {
+        return libros.values().stream()
+                .filter(l -> l.getAutores().stream()
+                        .anyMatch(a -> a.equalsIgnoreCase(autor)))
+                .mapToInt(l -> copias.getOrDefault(l.getISBN(), Collections.emptyList()).size())
+                .sum();
+    }
 
     private void registrarPrestamo(Copia copia, Usuario usuario) {
         Prestamo prestamo = Prestamo.builder()
@@ -104,5 +110,12 @@ public class Biblioteca {
                 .fechaDevolucion(LocalDate.now().plusDays(15))
                 .build();
         prestamos.add(prestamo);
+    }
+
+    private int consultarStock(Predicate<Libro> condicionBusqueda){
+        return libros.values().stream()
+                .filter(condicionBusqueda)
+                .mapToInt(l -> copias.getOrDefault(l.getISBN(), Collections.emptyList()).size())
+                .sum();
     }
 }
