@@ -81,9 +81,22 @@ public class Biblioteca {
         return false;
     }
 
-    //TODO: devolverCopia
-    public Boolean devolverCopia(Copia copia){
-        return false;
+    public boolean devolverCopia(Usuario us, Copia copia) {
+        Optional<Prestamo> prestamoOpt = buscarPrestamo(us.getId(), copia.getIdCopia());
+        if (prestamoOpt.isEmpty()) {
+            return false;
+        }
+
+        Prestamo prestamo = prestamoOpt.get();
+        if (!prestamos.contains(prestamo)) {
+            return false;
+        }
+
+        us.devolverCopia(copia);
+        copia.setDisponible(true);
+        prestamo.setFechaDevolucion(LocalDate.now());
+        prestamos.remove(prestamo);
+        return true;
     }
 
     public int consultarStockPorTitulo(String titulo) {
@@ -110,6 +123,13 @@ public class Biblioteca {
                 .fechaDevolucion(LocalDate.now().plusDays(15))
                 .build();
         prestamos.add(prestamo);
+    }
+
+    private Optional<Prestamo> buscarPrestamo(String usId, String copiaId){
+        return prestamos.stream().filter(prestamo ->
+                prestamo.getUs().getId().equals(usId) &&
+                prestamo.getCopia().getIdCopia().equals(copiaId))
+                .findFirst();
     }
 
     private int consultarStock(Predicate<Libro> condicionBusqueda){

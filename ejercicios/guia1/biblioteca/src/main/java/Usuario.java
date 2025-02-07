@@ -17,4 +17,11 @@ public class Usuario {
     public void agregarCopia(Copia copia){
         copiasPrestadas.add(copia);
     }
+    public Boolean devolverCopia(Copia copia){
+        if(copiasPrestadas.contains(copia)){
+            copiasPrestadas.remove(copia);
+            return true;
+        }
+        return false;
+    }
 }

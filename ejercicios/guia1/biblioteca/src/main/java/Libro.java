@@ -14,8 +14,4 @@ public class Libro {
     private String titulo;
     private LocalDate fechaPublicacion;
     private List<String> autores;
-
-    public boolean esAutor(String autor){
-        return autores.contains(autor);
-    }
 }

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Builder
 public class Copia {
-    @NonNull
+    @NonNull @Getter
     private String idCopia;
     @NonNull
     private Libro libro;
