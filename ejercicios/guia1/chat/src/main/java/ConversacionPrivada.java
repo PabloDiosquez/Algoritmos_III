@@ -7,11 +7,6 @@ public class ConversacionPrivada extends Conversacion{
     private Usuario participante1;
     @NonNull
     private Usuario participante2;
-
-    public ConversacionPrivada(@NonNull String id) {
-        super(id);
-    }
-
     public boolean esParticipante(String usId){
         return participante1.getId().equals(usId)
             || participante2.getId().equals(usId);
