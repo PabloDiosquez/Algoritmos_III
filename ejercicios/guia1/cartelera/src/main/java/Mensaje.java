@@ -1,9 +1,10 @@
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 
 import java.time.LocalDate;
-@Builder
+@Builder @Getter
 public class Mensaje {
     @NonNull
     private Usuario emisor;

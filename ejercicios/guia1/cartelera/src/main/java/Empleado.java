@@ -1,11 +1,14 @@
-public class Empleado extends Usuario{
+import lombok.experimental.SuperBuilder;
+
+@SuperBuilder
+public class Empleado extends Usuario implements UsAutorizado {
     @Override
     public boolean iniciarSesion(String password) {
         return false;
     }
 
     @Override
-    public void cerrarSesion(String password) {
+    public void salirSistema() {
 
     }
 }

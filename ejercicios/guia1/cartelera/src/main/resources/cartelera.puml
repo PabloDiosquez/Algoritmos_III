@@ -17,6 +17,8 @@ abstract class Usuario {
   -us: String
   -password: String
   -activo: Boolean
+  +cerrarSesion(): void
+  +enviarMensaje(otro: Usuario, String contenido): Mensaje
 }
 
 class Mensaje {
@@ -28,12 +30,10 @@ class Mensaje {
 
 class Huesped {
   +iniciarSesion(us: String, password: String): Boolean
-  +cerrarSesion(): void
 }
 
 class Empleado {
   +iniciarSesion(us: String, password: String): Boolean
-  +cerrarSesion(): void
 }
 
 Sistema "1" *-- "*" Usuario: registra
