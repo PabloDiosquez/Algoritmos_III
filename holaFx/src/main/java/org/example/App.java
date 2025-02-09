@@ -28,19 +28,10 @@ public class App extends Application {
         var button = new Button("Click Me!");
         root.getChildren().add(button);
 
-        class ButtonHandler implements EventHandler<ActionEvent> {
-            private final TextField textField;
-            public ButtonHandler(TextField textField) {
-                this.textField = textField;
-            }
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new Alert(Alert.AlertType.INFORMATION, String.format("%s", textField.getText())).show();
-
-            }
-        }
-        var handler = new ButtonHandler(textField);
-        button.setOnAction(handler);
+        button.setOnAction(actionEvent -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, String.format("%s", textField.getText()));
+            alert.show();
+        });
 
         var scene = new Scene(root);
         stage.setScene(scene);
