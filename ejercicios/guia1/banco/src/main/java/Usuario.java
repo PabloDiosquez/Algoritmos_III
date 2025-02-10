@@ -1,11 +1,12 @@
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 @Builder
 public class Usuario {
-    @NonNull
+    @NonNull @Getter
     private String id;
     @NonNull
     private String nombre;
