@@ -1,6 +1,12 @@
+import lombok.Builder;
+import lombok.NonNull;
+@Builder
 public class Cuenta {
+    @NonNull
     private String id;
-    private String titular;
+    @NonNull
+    private String titularId;
+
     protected double saldo;
 
     public boolean depositar(double monto){
