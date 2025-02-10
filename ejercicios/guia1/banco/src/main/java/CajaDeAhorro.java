@@ -1,0 +1,2 @@
+public class CajaDeAhorro {
+}
