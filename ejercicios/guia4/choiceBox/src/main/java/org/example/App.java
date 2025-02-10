@@ -1,12 +1,15 @@
 package org.example;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 
@@ -17,43 +20,38 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        VBox root = new VBox();
 
-        HBox header = new HBox();
-        TextField textField = new TextField();
-        Button btn = new Button("Add task!");
-        header.getChildren().addAll(textField, btn);
+        stage.setTitle("ChoiceBox");
 
-        VBox taskList = new VBox();
+        TilePane r = new TilePane();
+        Label label = new Label("This is a choice box!");
+        Label selectionLabel = new Label("Nothing selected");
 
-        root.getChildren().addAll(header, taskList);
+        String[] st = { "Arnab", "Andrew", "Ankit", "None" };
+        var choiceBox = new ChoiceBox(FXCollections.observableArrayList(st));
 
-        btn.setOnAction(event -> {
-            String text = textField.getText();
-            if (text.isEmpty()) {
-                return;
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+
+            // if the item of the list is changed
+            public void changed(ObservableValue ov, Number value, Number new_value)
+            {
+
+                // set the text for the label to the selected item
+                selectionLabel.setText(st[new_value.intValue()] + " selected");
             }
-            addTask(taskList, text);
         });
 
-        Scene scene = new Scene(root, 500, 500);
+        r.getChildren().add(label);
+        r.getChildren().add(choiceBox);
+        r.getChildren().add(selectionLabel);
+
+        var scene = new Scene(r, 200, 200);
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 
-    public static void addTask(VBox taskList, String task) {
-        HBox row = new HBox();
-        CheckBox checkBox = new CheckBox(task);
-        Button deleteBtn = new Button("\uD83D\uDDD1️");
-        row.getChildren().addAll(checkBox, deleteBtn);
-        taskList.getChildren().add(row);
-
-        deleteBtn.setOnAction(event -> {
-            taskList.getChildren().remove(row);
-        });
-    }
 }

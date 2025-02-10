@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e2f699f0-77b0-4597-9730-cc68585e8398" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../demo/src/main/scala/main.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/biblioteca/src/main/resources/biblioteca.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/biblioteca/src/main/resources/biblioteca.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Conversacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Conversacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/ConversacionPrivada.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/ConversacionPrivada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/resources/chat.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/resources/chat.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../holaFx/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../holaFx/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2sqiX803zJ4rb3mIWABUSwk5VlH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
+      <setting name="bbPath" value="" />
+      <setting name="parameters" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <setting name="workingDir" value="" />
+      <setting name="focusEditor" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
+      <setting name="host" value="" />
+      <setting name="port" value="0" />
+      <setting name="replType" value="SOCKET" />
+      <setting name="configType" value="SPECIFY" />
+      <setting name="replPortFileType" value="STANDARD" />
+      <setting name="customPortFile" value="" />
+      <setting name="fixLineNumbers" value="false" />
+      <setting name="focusEditor" value="false" />
+      <setting name="urlFile" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e2f699f0-77b0-4597-9730-cc68585e8398" name="Changes" comment="" />
+      <created>1739189543442</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739189543442</updated>
+    </task>
+    <servers />
+  </component>
+</project>
