@@ -28,13 +28,9 @@ public class App extends Application {
         String[] colors = { "Red", "Green", "Yellow", "Black" };
         var choiceBox = new ChoiceBox(FXCollections.observableArrayList(colors));
 
-        choiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-
-            public void changed(ObservableValue ov, Number value, Number new_value)
-            {
-                System.out.println(new_value.intValue());
-                selectionLabel.setStyle("-fx-background-color: " + colors[new_value.intValue()] + "; -fx-padding: 5px;");
-            }
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
+            System.out.println(new_value.intValue());
+            selectionLabel.setStyle("-fx-background-color: " + colors[new_value.intValue()] + "; -fx-padding: 5px;");
         });
 
         r.getChildren().add(label);
