@@ -54,5 +54,9 @@ public class App extends Application {
         Button deleteBtn = new Button("\uD83D\uDDD1️");
         row.getChildren().addAll(checkBox, deleteBtn);
         taskList.getChildren().add(row);
+
+        deleteBtn.setOnAction(event -> {
+            taskList.getChildren().remove(row);
+        });
     }
 }
