@@ -12,4 +12,12 @@ public class Usuario {
     private String nombre;
     @Builder.Default
     private List<Cuenta> cuentas = new ArrayList<>();
+
+    public boolean agregarCuenta(Cuenta cuenta){
+        if(cuenta == null){
+            return false;
+        }
+        cuentas.add(cuenta);
+        return true;
+    }
 }

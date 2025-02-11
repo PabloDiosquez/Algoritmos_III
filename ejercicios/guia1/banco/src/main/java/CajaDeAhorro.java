@@ -1,9 +1,10 @@
 import lombok.NonNull;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 public class CajaDeAhorro extends Cuenta{
-    @NonNull
+    @NonNull @Setter
     private double tasaDeInteres;
 
     public double calcularInteres(int meses){

@@ -3,7 +3,6 @@ import lombok.Builder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Builder
 public class Banco {
@@ -15,26 +14,22 @@ public class Banco {
     public Cuenta crearCuenta(Usuario us){
         Optional<Usuario> usOpt = buscarUsuario(us.getId());
         if(usOpt.isPresent()){
-            return Cuenta.builder()
-                    .id("######")
+            Cuenta cuenta = Cuenta.builder()
+                    .id(Helper.generarStringRandom(10))
                     .titularId(us.getId())
                     .saldo(0)
                     .build();
+            us.agregarCuenta(cuenta);
+            cuentas.add(cuenta);
+            return cuenta;
         }
         return null;
     }
 
     public Cuenta crearCajaDeAhorro(Usuario us, double tasaDeInteres){
-        Optional<Usuario> usOpt = buscarUsuario(us.getId());
-        if(usOpt.isPresent()){
-            return CajaDeAhorro.builder()
-                    .tasaDeInteres(tasaDeInteres)
-                    .id("######")
-                    .titularId(us.getId())
-                    .saldo(0)
-                    .build();
-        }
-        return null;
+        CajaDeAhorro cajaDeAhorro = (CajaDeAhorro) crearCuenta(us);
+        cajaDeAhorro.setTasaDeInteres(tasaDeInteres);
+        return cajaDeAhorro;
     }
     public boolean transferir(String origenId, String destinoId, double monto){
         Optional<Cuenta> origenOpt = buscarCuenta(origenId);
@@ -59,7 +54,7 @@ public class Banco {
 
     public Optional<Cuenta> buscarCuenta(String id){
         return cuentas.stream()
-                .filter(cuenta -> cuenta.equals(id))
+                .filter(cuenta -> cuenta.getId().equals(id))
                 .findFirst();
     }
 

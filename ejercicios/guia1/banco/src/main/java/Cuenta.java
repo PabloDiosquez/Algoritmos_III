@@ -1,8 +1,9 @@
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 @Builder
 public class Cuenta {
-    @NonNull
+    @NonNull @Getter
     private String id;
     @NonNull
     private String titularId;
