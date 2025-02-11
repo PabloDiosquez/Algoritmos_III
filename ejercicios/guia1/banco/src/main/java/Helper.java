@@ -1,15 +1,7 @@
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.UUID;
 
 public class Helper {
-    private static final String CARACTERES = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    public static String generarStringRandom(int longitud) {
-        StringBuilder sb = new StringBuilder(longitud);
-        int caracteresLength = CARACTERES.length();
-        for (int i = 0; i < longitud; i++) {
-            int index = ThreadLocalRandom.current().nextInt(caracteresLength);
-            sb.append(CARACTERES.charAt(index));
-        }
-        return sb.toString();
+    public static String generarStrRandom(int longitud) {
+        return UUID.randomUUID().toString().replace("-", "").substring(0, longitud);
     }
 }

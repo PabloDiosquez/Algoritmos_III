@@ -15,7 +15,7 @@ public class Banco {
         Optional<Usuario> usOpt = buscarUsuario(us.getId());
         if(usOpt.isPresent()){
             Cuenta cuenta = Cuenta.builder()
-                    .id(Helper.generarStringRandom(10))
+                    .id(Helper.generarStrRandom(10))
                     .titularId(us.getId())
                     .saldo(0)
                     .build();
