@@ -6,25 +6,25 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+        Label label = new Label("Move the mouse!");
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        StackPane root = new StackPane(label);
+        Scene scene = new Scene(root, 300, 200);
+
+        scene.setOnMouseMoved(mouseEvent -> {
+            label.setText(String.format("Coordinates: (%.2f, %.2f)", mouseEvent.getX(), mouseEvent.getY()));
+        });
+
         stage.setScene(scene);
+        stage.setTitle("Mouse Tracker");
         stage.show();
     }
 
     public static void main(String[] args) {
         launch();
     }
-
 }

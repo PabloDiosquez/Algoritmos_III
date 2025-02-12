@@ -1,16 +1,17 @@
 package org.example;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -54,9 +55,9 @@ public class App extends Application {
         insertOpButtonInto(r3, "+");
 
         var r4 = insertRowInto(panel);
-        insertClearButtonInto(r4, "C");
+        insertClearButtonInto(r4);
         insertButtonInto(r4, "0");
-        insertEqualButtonInto(r4, "=");
+        insertEqualButtonInto(r4);
         insertOpButtonInto(r4, "-");
 
         Scene scene = new Scene(root, 200, 200);
@@ -86,16 +87,17 @@ public class App extends Application {
         });
     }
 
-    private void insertEqualButtonInto(HBox row, String content){
-        var btn = new Button(content);
+    private void insertEqualButtonInto(HBox row){
+        var btn = new Button("=");
         row.getChildren().add(btn);
         btn.setOnAction(event -> {
-            System.out.println("Hi! I'm = :)");
+            ArrayList<String> parts = (ArrayList<String>) split(supraScreen.getText());
+            System.out.println(Arrays.stream(new ArrayList[]{parts}).collect(Collectors.toList()));
         });
     }
 
-    private void insertClearButtonInto(HBox row, String content) {
-        var btn = new Button(content);
+    private void insertClearButtonInto(HBox row) {
+        var btn = new Button("C");
         row.getChildren().add(btn);
         btn.setOnAction(actionEvent -> {
             supraScreen.clear();
@@ -111,5 +113,20 @@ public class App extends Application {
             supraScreen.setText(newText);
             screen.clear();
         });
+    }
+
+    public List<String> split(String str){
+        List<String> parts = new ArrayList<>();
+        StringBuilder actual = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            if (actual.length() > 0 && actual.charAt(0) != c) {
+                parts.add(actual.toString());
+                actual.setLength(0);
+            }
+            actual.append(c);
+        }
+        parts.add(actual.toString());
+        System.out.println(parts);
+        return parts;
     }
 }

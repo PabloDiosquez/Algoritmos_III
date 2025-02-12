@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2f699f0-77b0-4597-9730-cc68585e8398" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../demo/src/main/scala/main.scala" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../guia1/biblioteca/src/main/resources/biblioteca.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/biblioteca/src/main/resources/biblioteca.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../guia1/chat/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/pom.xml" afterDir="false" />
@@ -14,8 +13,7 @@
       <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/ConversacionPrivada.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/ConversacionPrivada.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/resources/chat.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/resources/chat.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../holaFx/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../holaFx/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

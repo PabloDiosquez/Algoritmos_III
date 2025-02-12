@@ -4,29 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c31a8b-1bed-4cdf-b4dc-c03c7e7612b7" name="Changes" comment="" />
+    <list default="true" id="f3c31a8b-1bed-4cdf-b4dc-c03c7e7612b7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../demo/src/main/scala/main.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/biblioteca/src/main/resources/biblioteca.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/biblioteca/src/main/resources/biblioteca.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Conversacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Conversacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/ConversacionPrivada.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/ConversacionPrivada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/java/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../guia1/chat/src/main/resources/chat.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../../guia1/chat/src/main/resources/chat.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../choiceBox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../choiceBox/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../holaFx/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../holaFx/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2sqpo5a8CqaMXekWPLXvX38deD0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
@@ -40,6 +64,9 @@
       </method>
     </configuration>
     <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <option name="configVersion" value="1" />
+      <option name="options" />
+      <option name="profiles" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
